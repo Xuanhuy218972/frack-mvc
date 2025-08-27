@@ -1,0 +1,48 @@
+request_body = @env['rack.input'].read
+    params = URI.decode_www_form(request_body).to_h
+    
+    email = params['email']
+    password = params['password']
+    password_confirmation = params['password_confirmation']
+    
+    # Validation
+    if email.nil? || email.empty? || password.nil? || password.empty? || password != password_confirmation
+      body = "Đăng ký thất bại! Vui lòng kiểm tra lại thông tin."
+      return [400, { 'content-type' => 'text/plain; charset=utf-8' }, [body]]
+    end
+    
+    # Check email format
+    unless email.match?(/\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i)
+      body = "Đăng ký thất bại! Email không đúng định dạng."
+      return [400, { 'content-type' => 'text/plain; charset=utf-8' }, [body]]
+    end
+    
+    # Check existing email
+    existing_user = User.find_by(email: email)
+    if existing_user
+      body = "Đăng ký thất bại! Email đã tồn tại."
+      return [400, { 'content-type' => 'text/plain; charset=utf-8' }, [body]]
+    end
+    
+    # Create user with hashed password
+    password_digest = BCrypt::Password.create(password)
+    user = User.new(email: email, password_digest: password_digest)
+    
+    if user.save
+      body = "Đăng ký thành công! Email: #{email}"
+      [201, { 'content-type' => 'text/plain; charset=utf-8' }, [body]]
+    else
+      body = "Đăng ký thất bại! Vui lòng thử lại."
+      [400, { 'content-type' => 'text/plain; charset=utf-8' }, [body]]
+    end
+  end
+  
+  private
+  
+  def request
+    @request ||= Rack::Request.new(@env)
+  end
+  
+  def params
+    request.params
+  end
