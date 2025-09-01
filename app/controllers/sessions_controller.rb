@@ -2,7 +2,7 @@ class SessionsController < Frack::BaseController
     def new 
         [[], 302, { 'location' => '/' }]
     end
-
+    
     def create
         email = request.params['email']
         password = request.params['password']
@@ -19,8 +19,8 @@ class SessionsController < Frack::BaseController
     end
 
     def destroy
-        request.session['user_id'] = nil
-        request.session['flash'] = 'You have successfully signed out!'
+       request.session.delete('user_id')
+       request.session['flash'] = 'You have successfully signed out!'
         [[], 302, { 'location' => '/' }]
     end
 end

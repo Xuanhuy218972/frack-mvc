@@ -43,7 +43,7 @@
   <button class="btn btn-outline-success" type="submit">Search</button>
 </form>
 <ul class="navbar-nav ms-3 mb-2 mb-lg-0">
-<% if request.session['user_id'] %>
+<% if current_user %>
   <li class="nav-item">
     <form action="/sign_out" method="POST" class="d-inline">
       <input type="hidden" name="_method" value="DELETE">

@@ -20,8 +20,7 @@ module Frack
           http_method = override_method.upcase
         end
       end
-      
-      # Ensure downstream consumers (like logger) see the effective method
+
       env['REQUEST_METHOD'] = http_method
       
       if mapping = routes[path+http_method]
