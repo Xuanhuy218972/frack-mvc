@@ -47,12 +47,18 @@ require 'lib/frack'
 require 'app/controllers/users_controller'
 require 'app/controllers/home_controller'
 require 'app/controllers/sessions_controller'
+require 'app/controllers/categories_controller'
 require 'app/models/user'
+require 'app/models/category'
 require_relative 'lib/middlewares/logger_middleware'
 require 'rack/session/cookie' 
 
 use Rack::Static, root: 'public', urls: ['/images', '/js', '/css']
 use LoggerMiddleware
+use Rack::Reloader
+use Rack::CommonLogger
+use Rack::ContentLength
+use Rack::MethodOverride
 
 use Frack::Router do 
     get '/sign_up' => 'users#new'
@@ -61,6 +67,14 @@ use Frack::Router do
     delete '/sign_out' => 'sessions#destroy'
     get '/users' => 'users#index'
     get "/" => 'home#show'
+    get '/categories' => 'categories#index'
+    get '/categories/new' => 'categories#new'
+    post '/categories' => 'categories#create'
+    get '/products' => 'products#index'
+    get '/products/:id' => 'products#show'
+    post '/products' => 'products#create'
+    patch 'products/:id' => 'products#update'
+    delete 'products/:id' => 'products#destroy'
 end
 
 use Rack::Session::Cookie, 
@@ -68,4 +82,5 @@ use Rack::Session::Cookie,
     path: '/',
     secret: 'your_secret_key_0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000'
 
+    use OTR::ActiveRecord::ConnectionManagement
 run Frack::Application

@@ -9,6 +9,8 @@ gem 'activerecord'
 gem 'pg'
 gem 'bcrypt'
 gem 'rack-session'
+gem 'rake'
+gem 'otr-activerecord'
 
 group :development, :test do
     gem 'byebug'

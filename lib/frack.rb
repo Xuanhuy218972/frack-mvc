@@ -5,14 +5,17 @@ require 'erb'
 require 'active_record'
 require 'pg'
 require 'bcrypt'
+require 'otr-activerecord'
 
-ActiveRecord::Base.establish_connection(
-  adapter:  'postgresql',
-  host:     'localhost',
-  database: 'frack_mvc',
-  username: 'userform', 
-  password: 'Xuanhuy21@nba' 
-)
+OTR::ActiveRecord.configure_from_file! "config/database.yml"
+OTR::ActiveRecord.establish_connection!
+#ActiveRecord::Base.establish_connection(
+#  adapter:  'postgresql',
+#  host:     'localhost',
+ # database: 'frack_mvc',
+  #username: 'userform', 
+  #password: 'Xuanhuy21@nba' 
+#)
 
 module Frack
     autoload :Router, 'frack/router'

@@ -1,0 +1,21 @@
+development:
+  adapter: "postgresql"
+  host: "localhost"
+  port: 5432
+  database: "frack_mvc"
+  username: "userform"
+  password: "Xuanhuy21@nba"
+staging: 
+  adapter: "postgresql"
+  host: "localhost"
+  port: 5432
+  database: "frack_mvc"
+  username: "userform"
+  password: "Xuanhuy21@nba"
+production:
+  adapter: "postgresql"
+  host: "localhost"
+  port: 5432
+  database: "frack_mvc"
+  username: "userform"
+  password: "Xuanhuy21@nba"
