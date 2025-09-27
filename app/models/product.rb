@@ -1,8 +1,7 @@
-class Category < ActiveRecord::Base
-  #Category.table_name = "products"
-  has_many :products
+class Product < ActiveRecord::Base
+  belongs_to :category
   validates :name, presence: true
-  
+
   before_save :run_my_custom_validate
 
   def run_my_custom_validate
@@ -12,4 +11,4 @@ class Category < ActiveRecord::Base
   end
 end
 
- 
+
