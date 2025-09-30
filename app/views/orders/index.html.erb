@@ -1,0 +1,27 @@
+<h1>Your Orders</h1>
+<a href="/orders/new">New Order</a>
+
+<% if @orders && @orders.any? %>
+  <table border="1">
+    <tr>
+      <th>ID</th>
+      <th>Order Date</th>
+      <th>Required Date</th>
+      <th>Status</th>
+      <th>Created At</th>
+    </tr>
+    <% @orders.each do |o| %>
+      <tr>
+        <td><%= o.id %></td>
+        <td><%= o.order_date %></td>
+        <td><%= o.required_date %></td>
+        <td><%= o.status %></td>
+        <td><%= o.created_at %></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p>No orders yet.</p>
+<% end %>
+
+

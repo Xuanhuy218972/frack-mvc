@@ -48,10 +48,12 @@ require 'app/controllers/users_controller'
 require 'app/controllers/home_controller'
 require 'app/controllers/sessions_controller'
 require 'app/controllers/products_controller'
+require 'app/controllers/orders_controller'
 require 'app/controllers/categories_controller'
 require 'app/models/user'
 require 'app/models/category'
 require 'app/models/product'
+require 'app/models/order'
 require_relative 'lib/middlewares/logger_middleware'
 require 'rack/session/cookie' 
 
@@ -75,6 +77,9 @@ use Frack::Router do
     get '/products' => 'products#index'
     get '/products/new' => 'products#new'
     post '/products' => 'products#create'
+    get '/orders' => 'orders#index'
+    get '/orders/new' => 'orders#new'
+    post '/orders' => 'orders#create'
 end
 
 use Rack::Session::Cookie, 
