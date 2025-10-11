@@ -20,6 +20,7 @@ class OrdersController < Frack::BaseController
 
     order_params = {
       'user_id' => user_id,
+      'status' => 0,
       'order_date' => order_date,
       'required_date' => required_date
     }

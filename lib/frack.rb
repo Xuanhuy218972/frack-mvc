@@ -6,6 +6,7 @@ require 'active_record'
 require 'pg'
 require 'bcrypt'
 require 'otr-activerecord'
+require 'kaminari'
 
 OTR::ActiveRecord.configure_from_file! "config/database.yml"
 OTR::ActiveRecord.establish_connection!

@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rack'
+gem 'rack', '3.1.16'
 gem 'erb'
 gem 'puma'
 gem 'rackup'
@@ -11,6 +11,11 @@ gem 'bcrypt'
 gem 'rack-session'
 gem 'rake'
 gem 'otr-activerecord'
+gem 'faker'
+gem 'kaminari'
+gem 'activesupport', '8.0.2'
+gem 'actionview', '8.0.2'
+
 
 group :development, :test do
     gem 'byebug'

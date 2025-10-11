@@ -5,7 +5,7 @@ class CategoriesController < Frack::BaseController
       return [[], 302, { 'location' => '/' }]
     end
 
-    @categories = Category.all
+    @categories = Category.order(:id).page(request.params['page']).per(25)
     render 'categories/index'
   end
 

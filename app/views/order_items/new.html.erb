@@ -1,0 +1,41 @@
+<h1>New Order Item</h1>
+<form action="/order_items" method="POST">
+  <p>
+    <label>Order ID:</label><br>
+    <input type="number" name="order_id" required>
+  </p>
+  
+  <p>
+    <label>Item ID:</label><br>
+    <input type="number" name="item_id" required>
+  </p>
+
+  <p>
+    <label>Product:</label><br>
+    <select name="product_id">
+      <% Product.all.each do |p| %>
+        <option value="<%= p.id %>"><%= p.name %></option>
+      <% end %>
+    </select>
+  </p>
+
+  <p>
+    <label>Quantity:</label><br>
+    <input type="number" name="quantity" required>
+  </p>
+
+  <p>
+    <label>List Price:</label><br>
+    <input type="number" step="0.01" name="list_price" required>
+  </p>
+
+  <p>
+    <label>Discount (%):</label><br>
+    <input type="number" step="0.01" name="discount" value="0">
+  </p>
+
+  <p>
+    <input type="submit" value="Create">
+    <a href="/order_items">Cancel</a>
+  </p>
+</form>

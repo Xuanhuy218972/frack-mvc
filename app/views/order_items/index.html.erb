@@ -1,0 +1,29 @@
+<h1>Order Items</h1>
+<a href="/order_items/new">Add Order Item</a>
+
+<% if @order_items && @order_items.any? %>
+  <table border="1">
+    <tr>
+      <th>Order ID</th>
+      <th>Item ID</th>
+      <th>Product</th>
+      <th>Quantity</th>
+      <th>List Price</th>
+      <th>Discount</th>
+      <th>Total</th>
+    </tr>
+    <% @order_items.each do |oi| %>
+      <tr>
+        <td><%= oi.order_id %></td>
+        <td><%= oi.item_id %></td>
+        <td><%= Product.find_by_id(oi.product_id)&.name %></td>
+        <td><%= oi.quantity %></td>
+        <td><%= oi.list_price %></td>
+        <td><%= oi.discount %>%</td>
+        <td><%= oi.total_price %></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p>No order items yet.</p>
+<% end %>

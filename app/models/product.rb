@@ -1,5 +1,6 @@
 class Product < ActiveRecord::Base
   belongs_to :category
+  has_many :order_items
   validates :name, presence: true
 
   before_save :run_my_custom_validate
